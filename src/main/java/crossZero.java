@@ -110,18 +110,27 @@ public class crossZero {
     }
 
     public static boolean checkWin(char symb) {
-        int a = 0, f = 0, e = 0;
-        int c = MAP.length;
+        int a = 0, b = 0, e = 0, f = 0;
 
-        for (int i = 0; i < MAP.length; i++) { // проверка строк-столбцов работает 50/50
-            for (c = 0; c < MAP.length; c++) {
+
+//        for (int i = 0; i < MAP.length; i++) {
+//            boolean s = true;
+//            for (c = 1; c < MAP.length && s; c++) {
+//                s = MAP[c][i] == MAP[0][i];
+//                if (s) return true;
+//            }
+//        }
+
+
+        for (int i = 0; i < MAP.length; i++) {// проверка столбцов/строк работает 50/50
+
+            for (int c = 0; c < MAP.length; c++) {
                 if (MAP[i][c] == symb)
                     a = a + 1; // если есть символ в строке добавляем 1 к счетчику
-
-
             }
             if (a == DOTS_TO_WIN) return true;
         }
+
 
         for (int i = 0; i < MAP.length; i++) {  //проверка дигонали 1.1 2.2 3.3
             if (symb == MAP[i][i]) {
@@ -146,21 +155,3 @@ public class crossZero {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

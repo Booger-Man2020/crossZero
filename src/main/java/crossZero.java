@@ -93,9 +93,8 @@ public class crossZero {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
             return false;
         }
-        if (MAP[y][x] == DOT_EMPTY) {
-            return true;
-        }
+        if (MAP[y][x] == DOT_EMPTY) return true;
+
         return false;
     }
 
@@ -110,27 +109,24 @@ public class crossZero {
     }
 
     public static boolean checkWin(char symb) {
-        int a = 0, b = 0, e = 0, f = 0;
+        int b = 0;
+        int d = 0, r = 0, z = 0, e = 0, f = 0; //счетчики символов
+        int w = 0, m = 0, n = 0;              //счетчики символов
 
 
-//        for (int i = 0; i < MAP.length; i++) {
-//            boolean s = true;
-//            for (c = 1; c < MAP.length && s; c++) {
-//                s = MAP[c][i] == MAP[0][i];
-//                if (s) return true;
-//            }
-//        }
-
-
-        for (int i = 0; i < MAP.length; i++) {// проверка столбцов/строк работает 50/50
-
-            for (int c = 0; c < MAP.length; c++) {
-                if (MAP[i][c] == symb)
-                    a = a + 1; // если есть символ в строке добавляем 1 к счетчику
-            }
-            if (a == DOTS_TO_WIN) return true;
+        for (char[] chars : MAP) { // проверка вертикалей
+            if (chars[b] == symb) w = w + 1;
+            if (chars[b + 1] == symb) m = m + 1;
+            if (chars[b + 2] == symb) n = n + 1;
+            if (w == DOTS_TO_WIN || m == DOTS_TO_WIN ||n == DOTS_TO_WIN) return true;
         }
 
+        for (int i = 0; i < MAP.length; i++) { // проверка горизонталей
+            if (MAP[b][i] == symb) d = d + 1;
+            if (MAP[b + 1][i] == symb) r = r + 1;
+            if (MAP[b + 2][i] == symb) z = z + 1;
+            if (d == DOTS_TO_WIN || r == DOTS_TO_WIN || z == DOTS_TO_WIN) return true;
+        }
 
         for (int i = 0; i < MAP.length; i++) {  //проверка дигонали 1.1 2.2 3.3
             if (symb == MAP[i][i]) {
